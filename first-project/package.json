@@ -1,0 +1,16 @@
+{
+  "name": "first-project",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test":"jest",
+    "test:watch":"jest --watchAll",
+    "test:coverage":"jest --coverage",
+    "test:watch:coverage":"jest --coverage --watchAll"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@types/jest": "^27.4.1",
+    "jest": "^27.5.1"
+  }
+}
