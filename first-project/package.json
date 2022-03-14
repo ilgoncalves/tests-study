@@ -3,14 +3,17 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test":"jest",
-    "test:watch":"jest --watchAll",
-    "test:coverage":"jest --coverage",
-    "test:watch:coverage":"jest --coverage --watchAll"
+    "test": "jest",
+    "test:watch": "jest --watchAll",
+    "test:coverage": "jest --coverage",
+    "test:watch:coverage": "jest --coverage --watchAll"
   },
   "license": "MIT",
   "devDependencies": {
+    "@babel/core": "^7.17.5",
+    "@babel/preset-env": "^7.16.11",
     "@types/jest": "^27.4.1",
+    "babel-jest": "^27.5.1",
     "jest": "^27.5.1"
   }
 }

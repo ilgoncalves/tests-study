@@ -1,4 +1,4 @@
-const { queryString, parseQuery } = require("./queryString");
+import { queryString, parseQuery } from "./queryString";
 
 describe("Tests on queryString", () => {
   it("should return a query string when pass obj", () => {

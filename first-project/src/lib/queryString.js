@@ -1,7 +1,7 @@
-module.exports.queryString = (obj) => {
+export function queryString(obj) {
   let string = "";
   let count = 1;
-  for (key in obj) {
+  for (let key in obj) {
     if (obj[key]) {
       if (
         typeof obj[key] === "object" &&
@@ -16,10 +16,10 @@ module.exports.queryString = (obj) => {
   }
 
   return string;
-};
+}
 
-module.exports.parseQuery = (queryString) =>
-  Object.fromEntries(
+export function parseQuery(queryString) {
+  return Object.fromEntries(
     queryString.split("&").map((el) => {
       let [key, value] = el.split("=");
       if (value.includes(",")) {
@@ -28,3 +28,4 @@ module.exports.parseQuery = (queryString) =>
       return [key, value];
     })
   );
+}
