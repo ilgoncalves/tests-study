@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`test Cart class tests on checkout should bring the total and the items when call checkout 1`] = `
+exports[`test Cart class tests on checkout should bring the total and the items when call summary 1`] = `
 Object {
   "items": Array [
     Object {

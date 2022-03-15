@@ -80,7 +80,7 @@ describe("test Cart class", () => {
   });
 
   describe("tests on checkout", () => {
-    it("should bring the total and the items when call checkout", () => {
+    it("should bring the total and the items when call summary", () => {
       cart.add({
         product,
         quantity: 5,
@@ -90,7 +90,22 @@ describe("test Cart class", () => {
         quantity: 1,
       });
 
-      expect(cart.checkout()).toMatchSnapshot();
+      expect(cart.summary()).toMatchSnapshot();
+    });
+
+    it("should checkout and then ensure the getTotal is equal 0", () => {
+      cart.add({
+        product,
+        quantity: 5,
+      });
+      cart.add({
+        product: product2,
+        quantity: 1,
+      });
+
+      cart.checkout();
+
+      expect(cart.getTotal()).toEqual(0);
     });
   });
 });
