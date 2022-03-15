@@ -9,7 +9,7 @@ describe("test Cart class", () => {
   };
 
   let product2 = {
-    name: "celphone",
+    name: "cellphone",
     price: 100150, // R$1001,50
   };
 
@@ -18,7 +18,7 @@ describe("test Cart class", () => {
   });
 
   describe("tests on getTotal", () => {
-    it("Should receive 0 when call getTotal after instanciate a new Cart", () => {
+    it("Should receive 0 when call getTotal after instantiate a new Cart", () => {
       expect(cart.getTotal()).toEqual(0);
     });
 
@@ -80,7 +80,7 @@ describe("test Cart class", () => {
   });
 
   describe("tests on checkout", () => {
-    it("should brign the total and the items when call checkout", () => {
+    it("should bring the total and the items when call checkout", () => {
       cart.add({
         product,
         quantity: 5,
