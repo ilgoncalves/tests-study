@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`test Cart class tests on checkout should brign the total and the items when call checkout 1`] = `
+Object {
+  "items": Array [
+    Object {
+      "product": Object {
+        "name": "sunglass",
+        "price": 1050,
+      },
+      "quantity": 5,
+    },
+    Object {
+      "product": Object {
+        "name": "celphone",
+        "price": 100150,
+      },
+      "quantity": 1,
+    },
+  ],
+  "total": 105400,
+}
+`;
