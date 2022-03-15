@@ -8,6 +8,11 @@ describe("Test Cart class", () => {
     price: 1050, // R$10,50
   };
 
+  let product2 = {
+    name: "celphone",
+    price: 100150, // R$1001,50
+  };
+
   beforeEach(() => {
     cart = new Cart();
   });
@@ -24,7 +29,7 @@ describe("Test Cart class", () => {
 
     cart.add(item);
 
-    expect(cart.getTotal()).toEqual(3150);
+    expect(cart.getTotal()).toEqual(product.price * item.quantity);
   });
 
   it("Should unsure to keep the last add if pass the same product", () => {
@@ -37,10 +42,10 @@ describe("Test Cart class", () => {
       quantity: 1,
     });
 
-    expect(cart.getTotal()).toEqual(1050);
+    expect(cart.getTotal()).toEqual(product.price);
   });
 
-  it("Should unsure to keep the last add if pass the same product adding 3 times", () => {
+  it("Should ensure to keep the last add if pass the same product adding 3 times", () => {
     cart.add({
       product,
       quantity: 3,
@@ -54,6 +59,21 @@ describe("Test Cart class", () => {
       quantity: 4,
     });
 
-    expect(cart.getTotal()).toEqual(1050 * 4);
+    expect(cart.getTotal()).toEqual(product.price * 4);
+  });
+
+  it("should ensure that the value will be updated when add and then remove a item to cart", () => {
+    cart.add({
+      product,
+      quantity: 3,
+    });
+    cart.add({
+      product: product2,
+      quantity: 1,
+    });
+
+    cart.remove(product);
+
+    expect(cart.getTotal()).toEqual(product2.price);
   });
 });
