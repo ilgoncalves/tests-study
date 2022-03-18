@@ -1,3 +1,7 @@
+import Money from "dinero.js";
+
+Money.defaultCurrency = "BRL";
+Money.defaultPrecision = 2;
 export default class Cart {
   items = [];
 
@@ -19,10 +23,13 @@ export default class Cart {
   }
 
   getTotal() {
-    return this.items.reduce(
-      (acc, element) => (acc += element.product.price * element.quantity),
-      0
-    );
+    return this.items
+      .reduce(
+        (acc, element) =>
+          acc.add(Money({ amount: element.product.price * element.quantity })),
+        Money({ amount: 0 })
+      )
+      .getAmount();
   }
 
   summary() {
