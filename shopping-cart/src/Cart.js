@@ -1,5 +1,45 @@
 import Money from "dinero.js";
 
+const getPercentage = (value, percentage) => {
+  return (value * percentage) / 100;
+};
+
+const calculateEachCondition = (amount, item, condition) => {
+  const productPrice = item.product.price;
+  const { percentage, minimumItems, quantity } = condition;
+  if (quantity) {
+    const rest = item.quantity % quantity;
+    return Money({
+      amount: ((item.quantity - rest) / quantity) * productPrice,
+    });
+  }
+
+  if (item.quantity >= minimumItems) {
+    return Money({
+      amount: getPercentage(amount, percentage),
+    });
+  }
+};
+
+const calculateDiscount = (amount, item) => {
+  let discount = Money({ amount: 0 });
+  if (item.condition) {
+    const { condition } = item;
+
+    const hasTwoConditions = Array.isArray(condition);
+
+    if (hasTwoConditions) {
+      const eachDiscountsConditions = condition
+        .map((el) => calculateEachCondition(amount, item, el).getAmount())
+        .sort((a, b) => b - a);
+      discount = Money({ amount: eachDiscountsConditions[0] });
+    } else {
+      discount = calculateEachCondition(amount, item, condition);
+    }
+  }
+  return discount;
+};
+
 Money.defaultCurrency = "BRL";
 Money.defaultPrecision = 2;
 export default class Cart {
@@ -24,11 +64,13 @@ export default class Cart {
 
   getTotal() {
     return this.items
-      .reduce(
-        (acc, element) =>
-          acc.add(Money({ amount: element.product.price * element.quantity })),
-        Money({ amount: 0 })
-      )
+      .reduce((acc, element) => {
+        const amount = element.product.price * element.quantity;
+
+        let discount = calculateDiscount(amount, element);
+
+        return acc.add(Money({ amount }).subtract(discount));
+      }, Money({ amount: 0 }))
       .getAmount();
   }
 
