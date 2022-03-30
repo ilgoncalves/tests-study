@@ -2,6 +2,7 @@
 
 exports[`test Cart class tests on checkout should bring the total and the items when call summary 1`] = `
 Object {
+  "formatted": "R$1,054.00",
   "items": Array [
     Object {
       "product": Object {

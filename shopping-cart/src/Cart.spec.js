@@ -169,8 +169,6 @@ describe("test Cart class", () => {
       };
 
       cart.add(item);
-
-      console.log(cart.getTotal());
       expect(cart.getTotal()).toEqual(300450);
     });
 
@@ -192,6 +190,17 @@ describe("test Cart class", () => {
       cart.add(item);
 
       expect(cart.getTotal()).toEqual(200300);
+    });
+
+    it("should include formatted value on summary", () => {
+      const item = {
+        product,
+        quantity: 3,
+      };
+
+      cart.add(item);
+
+      expect(cart.summary().formatted).toEqual("R$31.50");
     });
   });
 });
