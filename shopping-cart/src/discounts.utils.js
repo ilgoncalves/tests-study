@@ -24,7 +24,7 @@ export const calculateDiscount = (amount, item) => {
   let discount = Money({ amount: 0 });
   if (item.condition) {
     const { condition } = item;
-
+    debugger;
     const conditions = Array.isArray(condition) ? condition : [condition];
     discount = Money({
       amount: conditions
