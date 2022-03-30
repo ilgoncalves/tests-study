@@ -14,11 +14,10 @@ const calculateEachCondition = (amount, item, condition) => {
     });
   }
 
-  if (item.quantity >= minimumItems) {
-    return Money({
-      amount: getPercentage(amount, percentage),
-    });
-  }
+  return Money({
+    amount:
+      item.quantity >= minimumItems ? getPercentage(amount, percentage) : 0,
+  });
 };
 
 const calculateDiscount = (amount, item) => {
@@ -26,16 +25,12 @@ const calculateDiscount = (amount, item) => {
   if (item.condition) {
     const { condition } = item;
 
-    const hasTwoConditions = Array.isArray(condition);
-
-    if (hasTwoConditions) {
-      const eachDiscountsConditions = condition
+    const conditions = Array.isArray(condition) ? condition : [condition];
+    discount = Money({
+      amount: conditions
         .map((el) => calculateEachCondition(amount, item, el).getAmount())
-        .sort((a, b) => b - a);
-      discount = Money({ amount: eachDiscountsConditions[0] });
-    } else {
-      discount = calculateEachCondition(amount, item, condition);
-    }
+        .sort((a, b) => b - a)[0],
+    });
   }
   return discount;
 };

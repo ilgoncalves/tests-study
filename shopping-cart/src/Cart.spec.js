@@ -125,6 +125,23 @@ describe("test Cart class", () => {
       expect(cart.getTotal()).toEqual(140210);
     });
 
+    it("should not apply the discount when the minimum items is greater than quantity ", () => {
+      const condition = {
+        percentage: 30,
+        minimumItems: 3,
+      };
+
+      const item = {
+        product: product2,
+        condition,
+        quantity: 2,
+      };
+
+      cart.add(item);
+
+      expect(cart.getTotal()).toEqual(200300);
+    });
+
     it("should return a 50% discount if the quantity of items is greater than condition", () => {
       const condition = {
         quantity: 2,
