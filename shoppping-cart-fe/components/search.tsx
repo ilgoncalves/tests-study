@@ -1,6 +1,6 @@
 export default function Search() {
   return (
-    <div className="relative mt-6 max-w-lg mx-auto">
+    <div data-testid="search" className="relative mt-6 max-w-lg mx-auto">
       <span className="absolute inset-y-0 left-0 pl-3 flex items-center">
         <svg className="h-5 w-5 text-gray-500" viewBox="0 0 24 24" fill="none">
           <path
@@ -12,7 +12,6 @@ export default function Search() {
           />
         </svg>
       </span>
-
       <input
         className="w-full border rounded-md pl-10 pr-4 py-2 focus:border-blue-500 focus:outline-none focus:shadow-outline"
         type="text"
