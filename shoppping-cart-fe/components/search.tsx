@@ -1,7 +1,10 @@
+import { useState } from "react";
+
 export default function Search({ onSubmit }) {
+  const [text, setText] = useState("");
   return (
     <form
-      onSubmit={onSubmit}
+      onSubmit={() => onSubmit(text)}
       name="search-input-form"
       className="relative mt-6 max-w-lg mx-auto"
     >
@@ -17,8 +20,10 @@ export default function Search({ onSubmit }) {
         </svg>
       </span>
       <input
+        value={text}
+        onChange={(e) => setText(e.target.value)}
         className="w-full border rounded-md pl-10 pr-4 py-2 focus:border-blue-500 focus:outline-none focus:shadow-outline"
-        type="text"
+        type="search"
         placeholder="Search"
       />
     </form>
